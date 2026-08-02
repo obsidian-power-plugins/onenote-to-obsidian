@@ -141,8 +141,9 @@ Rules never touch fenced code blocks or YAML frontmatter.
 
 The importer does not carry manual page order across. `onenote-order-migrate.cjs`
 reads a OneNote hierarchy export and writes notebook, section, and page order
-into an Obsidian vault that uses the Power Explorer plugin, moving flattened
-subpage groups back inside their parent pages.
+into an Obsidian vault that uses the
+[Power Explorer](https://github.com/obsidian-power-plugins/obsidian-power-explorer)
+plugin, moving flattened subpage groups back inside their parent pages.
 
 See [docs/sort-order-migration.md](docs/sort-order-migration.md) for the full
 procedure. It is dry-run by default like the rest of the toolkit.
