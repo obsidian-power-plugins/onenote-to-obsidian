@@ -6,10 +6,10 @@
 // Mirrors a OneNote notebook's real order into an Obsidian vault that was
 // imported with obsidian-importer, in two phases (order matters):
 //
-//   1. NESTING  — the importer flattens subpage groups to section depth; a
+//   1. NESTING , the importer flattens subpage groups to section depth; a
 //      level-2 page with its own subpages gets its folder moved inside its
 //      level-1 parent's folder, restoring OneNote's drill-down.
-//   2. ORDERING — writes Power Explorer's manual sort (data.json orders):
+//   2. ORDERING, writes Power Explorer's manual sort (data.json orders):
 //      notebooks at the vault root, section-group children, and pages with
 //      their subpage folders interleaved in true page order.
 //
@@ -30,7 +30,7 @@ const VAULT = args[1];
 const APPLY = flags.has("--apply");
 if (!XML || !VAULT || !fs.existsSync(XML) || !fs.existsSync(VAULT)) {
 	console.log("Usage: node onenote-order-migrate.cjs <onenote-hierarchy.xml> <vaultPath> [--apply]");
-	console.log("Dry run by default — prints the nesting moves and sort plan without changing anything.");
+	console.log("Dry run by default, prints the nesting moves and sort plan without changing anything.");
 	process.exit(1);
 }
 const DATA = path.join(VAULT, ".obsidian", "plugins", "powerexplorer", "data.json");
@@ -166,7 +166,7 @@ const moves = [];
 	if (best && best.nests.length && (hits >= 3 || hits >= Math.ceil(kidKeys.length / 2))) {
 		const dirKeys = new Map(dirs.map((d) => [sanitize(d), d]));
 		for (const n of best.nests) {
-			// only when child and parent sit here as SIBLINGS — inside the parent
+			// only when child and parent sit here as SIBLINGS, inside the parent
 			// folder itself the child is already where it belongs (idempotence)
 			if (sanitize(path.basename(dir)) === sanitize(n.parent)) continue;
 			const childDir = dirKeys.get(sanitize(n.child));
@@ -272,7 +272,7 @@ console.log(`Folders that will get a manual order: ${Object.keys(orders).length}
 
 if (!APPLY) {
 	console.log("");
-	console.log("(dry run — nothing changed; re-run with --apply to move folders and write the order)");
+	console.log("(dry run, nothing changed; re-run with --apply to move folders and write the order)");
 	console.log("(on --apply, ranks are recomputed on the tree AFTER the nesting moves)");
 	process.exit(0);
 }
@@ -297,7 +297,7 @@ if (fs.existsSync(DATA)) {
 	try {
 		data = Object.assign({}, defaults, JSON.parse(fs.readFileSync(DATA, "utf8")));
 	} catch {
-		/* unreadable — start from defaults */
+		/* unreadable, start from defaults */
 	}
 }
 data.orders = Object.assign({}, data.orders, orders);

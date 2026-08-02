@@ -9,7 +9,7 @@ vault that was imported with **obsidian-importer**:
   after their parent page
 - subpage groups the importer flattened (a level-2 page with its own
   subpages) are **moved back inside** their parent page's folder, restoring
-  OneNote's drill-down — which Power Explorer's pages pane renders with
+  OneNote's drill-down, which Power Explorer's pages pane renders with
   expand/collapse
 
 Everything unmatched is left untouched (it just sorts below ranked items),
@@ -18,7 +18,7 @@ hits or ≥50% overlap) take an order. Idempotent: re-running changes nothing.
 
 ## Prerequisites
 
-- **OneNote desktop** (the COM API — the Store/web version won't work)
+- **OneNote desktop** (the COM API, the Store/web version won't work)
 - **Node.js**
 - **Power Explorer ≥ 0.7.0** deployed and enabled in the target vault
   (0.7.0 adopts external `data.json` edits live; on older versions, close
@@ -38,13 +38,13 @@ hits or ≥50% overlap) take an order. Idempotent: re-running changes nothing.
 
    If line 1 errors, you only have the Store version of OneNote.
 
-2. **Dry run** — prints the folder moves and the sort plan, changes nothing:
+2. **Dry run**, prints the folder moves and the sort plan, changes nothing:
 
    ```
    node onenote-order-migrate.cjs "%USERPROFILE%\Desktop\onenote-hierarchy.xml" "D:\Path\To\Vault"
    ```
 
-3. **Apply** — moves the flattened subpage folders, recomputes ranks on the
+3. **Apply**, moves the flattened subpage folders, recomputes ranks on the
    moved tree, backs up `data.json` beside itself, writes, prunes stale keys:
 
    ```
@@ -62,7 +62,7 @@ hits or ≥50% overlap) take an order. Idempotent: re-running changes nothing.
   the folder name at the right position in `orders["/"]` in
   `.obsidian/plugins/powerexplorer/data.json`.
 - **Order revert**: copy the `data.json.backup-YYYY-MM-DD` written on apply
-  back over `data.json` and reload. The **folder moves** are separate — the
+  back over `data.json` and reload. The **folder moves** are separate, the
   apply output lists every move if you need to reverse one.
 - Duplicate page titles within one section may order arbitrarily among
   themselves; attachments travel with their folders, so links keep working.

@@ -236,7 +236,7 @@ Write-Host "`n--- FIX MODE ---" -ForegroundColor Yellow
 if (-not $Force) {
     $answer = Read-Host ("About to rename {0} item(s) listed above. Type YES to continue" -f $offenders.Count)
     if ($answer -ne 'YES') {
-        Write-Host 'Cancelled. Nothing was changed.' -ForegroundColor Cyan
+        Write-Host 'Canceled. Nothing was changed.' -ForegroundColor Cyan
         exit 0
     }
 }
